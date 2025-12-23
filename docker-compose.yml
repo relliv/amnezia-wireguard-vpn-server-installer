@@ -8,7 +8,7 @@ services:
     environment:
       # v15 uses setup wizard - most settings are in Admin Panel
       - EXPERIMENTAL_AWG=true
-      # Uncomment to force AmneziaWG (requires kernel module on host)
+      # Force AmneziaWG (requires kernel module on host)
       - OVERRIDE_AUTO_AWG=awg
       - INSECURE=true
     ports:
