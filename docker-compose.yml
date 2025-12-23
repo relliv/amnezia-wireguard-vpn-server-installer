@@ -1,0 +1,31 @@
+services:
+  my_awireguard:
+    image: ghcr.io/wg-easy/wg-easy:15.2.0-beta.3
+    container_name: my_awireguard
+    volumes:
+      - my_awireguard_vol:/etc/wireguard
+      - /lib/modules:/lib/modules:ro
+    environment:
+      # v15 uses setup wizard - most settings are in Admin Panel
+      - EXPERIMENTAL_AWG=true
+      # Uncomment to force AmneziaWG (requires kernel module on host)
+      # - OVERRIDE_AUTO_AWG=awg
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+      # - NET_RAW # Uncomment if using Podman
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.default.forwarding=1
+
+volumes:
+  my_awireguard_vol:
+    external: false
+    name: my_wireguard_data
