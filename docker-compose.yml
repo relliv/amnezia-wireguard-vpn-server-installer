@@ -9,7 +9,8 @@ services:
       # v15 uses setup wizard - most settings are in Admin Panel
       - EXPERIMENTAL_AWG=true
       # Uncomment to force AmneziaWG (requires kernel module on host)
-      # - OVERRIDE_AUTO_AWG=awg
+      - OVERRIDE_AUTO_AWG=awg
+      - INSECURE=true
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
