@@ -1,4 +1,4 @@
-# WireGuard VPN Server
+# Amnezia WireGuard VPN Server
 
 Some third party API providers working with whitelisted IP, even in dev environment. To access their servers we need static IP. This VPN server provides a static IP. We are using this VPN server is a proxy server. Then we can use dev APIs in our local environment.
 
@@ -20,7 +20,7 @@ Add client with '+ New' button then scan QR code or download configuration file.
 
 ### Client Apps
 
-Install official client apps from [WireGuard](https://www.wireguard.com/install/?locale=en) website. Then use your client QR or configuration file to connect to the VPN.
+Install official client [AmneziaWG](https://github.com/wg-easy/wg-easy/blob/master/docs/content/advanced/config/amnezia.md#client-applications) app. Then use your client QR or configuration file to connect to the VPN.
 
 > [!WARNING]  
 > While using this VPN server, be aware of the security risks. This VPN server is not a secure connection and can be intercepted by third parties. Use only for **development purposes**.
@@ -33,11 +33,11 @@ Install official client apps from [WireGuard](https://www.wireguard.com/install/
 
 ## 🚀 Installation
 
-### Quick Installation
+### Amnezia WireGuard Installation
 
 ```bash
-chmod +x install.sh
-./install.sh
+chmod +x install-amneziawg-ubuntu.sh
+./install-amneziawg-ubuntu.sh
 ```
 
 ### Manual Installation
@@ -55,29 +55,16 @@ chmod +x install.sh
    cp .env.example .env
    ```
 
-   Edit `.env` and set:
-   - `SERVER_IP` - Your server's public IP address
-   - `PASSWORD_HASH` - Strong password for admin panel
-
 3. Start the server:
 
    ```bash
    docker compose up -d
    ```
 
-4. Get password hash:
+4. Register new user:
 
-   ```bash
-   docker exec my_awireguard wgpw YOUR_PASSWORD
-   ```
-
-   Copy the output and set it to `PASSWORD_HASH` in `.env` file.
-
-5. Apply changes:
-
-   ```bash
-   docker compose up -d
-   ```
+   - Go to http://SERVER_IP:51821
+   - Register new user
 
 Now you can access the admin panel.
 
