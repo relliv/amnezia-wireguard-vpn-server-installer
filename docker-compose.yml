@@ -10,7 +10,8 @@ services:
       - EXPERIMENTAL_AWG=true
       # Force AmneziaWG (requires kernel module on host)
       - OVERRIDE_AUTO_AWG=awg
-      - INSECURE=true
+      # Set to false to disable insecure mode to use without SSL
+      - INSECURE=false
     ports:
       - "51820:51821/udp"   # host:container
       - "51821:51821/tcp"

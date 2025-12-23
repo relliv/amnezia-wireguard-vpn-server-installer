@@ -5,25 +5,11 @@ A simple [WireGuard](https://www.wireguard.com/) VPN server using [wg-easy](http
 > [!WARNING]  
 > This setup still uses beta `ghcr.io/wg-easy/wg-easy:15.2.0-beta.3` image and kernel module `amneziawg`. You can use it for testing purposes but it is not recommended for production use.
 
-## Why Amnezia?
+## 🤔 Why Amnezia?
 
 AmneziaWG is an enhanced version of the WireGuard VPN protocol designed to bypass Deep Packet Inspection (DPI) and advanced network traffic analysis systems. It maintains WireGuard's high speed and security while adding obfuscation parameters (Jc, Jmin, Jmax, S1, S2, H1-H4) to packet headers, making VPN traffic indistinguishable from regular internet traffic. This open-source, free solution allows users to set up their own VPN on personal servers with complete control, eliminating reliance on third-party VPN providers.
 
-## 🌐 Access Web UI
-
-```txt
-http://SERVER_IP:51821
-```
-
-### Login
-
-Username: no user, just use password
-
-### Add Client
-
-Add client with '+ New' button then scan QR code or download configuration file.
-
-### Client Apps
+## 📱 Client Apps
 
 Install official client [AmneziaWG](https://github.com/wg-easy/wg-easy/blob/master/docs/content/advanced/config/amnezia.md#client-applications) app. Then use your client QR or configuration file to connect to the VPN.
 
@@ -101,7 +87,7 @@ Finally restart your server to apply changes.
    - Go to http://SERVER_IP:51821
    - Register new user
 
-Now you can access the admin panel.
+Now you can access the admin panel. By default insecure mode is disabled, to use without SSL set `INSECURE=true` in [docker-compose.yml](docker-compose.yml) file.
 
 ## 📖 Usage
 
