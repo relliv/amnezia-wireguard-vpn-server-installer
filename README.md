@@ -1,8 +1,13 @@
 # Amnezia WireGuard VPN Server
 
-Some third party API providers working with whitelisted IP, even in dev environment. To access their servers we need static IP. This VPN server provides a static IP. We are using this VPN server is a proxy server. Then we can use dev APIs in our local environment.
+A simple [WireGuard](https://www.wireguard.com/) VPN server using [wg-easy](https://github.com/wg-easy/wg-easy) and [AmneziaWG Linux kernel module](https://github.com/amnezia-vpn/amneziawg-linux-kernel-module).
 
-A simple [WireGuard](https://www.wireguard.com/) VPN server using [wg-easy](https://github.com/wg-easy/wg-easy).
+> [!WARNING]  
+> This setup still uses beta `ghcr.io/wg-easy/wg-easy:15.2.0-beta.3` image and kernel module `amneziawg`. You can use it for testing purposes but it is not recommended for production use.
+
+## Why Amnezia?
+
+AmneziaWG is an enhanced version of the WireGuard VPN protocol designed to bypass Deep Packet Inspection (DPI) and advanced network traffic analysis systems. It maintains WireGuard's high speed and security while adding obfuscation parameters (Jc, Jmin, Jmax, S1, S2, H1-H4) to packet headers, making VPN traffic indistinguishable from regular internet traffic. This open-source, free solution allows users to set up their own VPN on personal servers with complete control, eliminating reliance on third-party VPN providers.
 
 ## 🌐 Access Web UI
 
@@ -39,6 +44,36 @@ Install official client [AmneziaWG](https://github.com/wg-easy/wg-easy/blob/mast
 chmod +x install-amneziawg-ubuntu.sh
 ./install-amneziawg-ubuntu.sh
 ```
+
+### What this script does?
+
+- System Preparation (Steps 1-2):
+
+   Optional system upgrade with apt-get full-upgrade
+   Enables deb-src repositories required for building kernel modules
+- Prerequisites Installation (Step 3):
+
+   Installs essential packages: software-properties-common, python3-launchpadlib, gnupg2, linux-headers, build-essential, and dkms
+- Repository Configuration (Step 4):
+
+   Adds the official Amnezia PPA repository using add-apt-repository ppa:amnezia/ppa
+- AmneziaWG Installation (Step 5):
+
+   Installs the amneziawg package which includes the kernel module
+- Verification (Step 6):
+
+   Checks if the kernel module is available using modinfo
+   Attempts to load the module with modprobe
+   Verifies tools installation
+- Network Configuration (Step 7):
+
+   Enables IPv4 and IPv6 forwarding in /etc/sysctl.conf for VPN routing functionality
+- Post-Installation (Steps 8-9):
+
+   Creates secure configuration directory at /etc/amneziawg
+   Displays configuration parameters and usage instructions.
+
+Finally restart your server to apply changes.
 
 ### Manual Installation
 
