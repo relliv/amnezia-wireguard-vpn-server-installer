@@ -12,7 +12,7 @@ services:
       - OVERRIDE_AUTO_AWG=awg
       - INSECURE=true
     ports:
-      - "51820:51820/udp"
+      - "51820:51821/udp"   # host:container
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
